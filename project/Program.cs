@@ -7,6 +7,7 @@
             Console.WriteLine("Hello, World!");
             Console.WriteLine("Osman!");
             Console.WriteLine("senap");
+            Console.WriteLine("fdedjnjn ");
         }
     }
 }
