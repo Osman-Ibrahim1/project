@@ -47,7 +47,8 @@
                 }
 
                 // Visa resultatet
-                Console.WriteLine("Resultat: " + result);
+                Console.WriteLine("Resultatet: " + result);
+                Console.WriteLine("Resultatet: " + result);
 
                 // Fråga om användaren vill fortsätta
                 Console.Write("Vill du göra en ny beräkning? (ja/nej): ");
