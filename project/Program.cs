@@ -4,6 +4,29 @@
     {
         static void Main(string[] args)
         {
+
+
+                exitBool = false;
+
+                while (exitBool == false)
+                {
+                    Console.WriteLine(
+                   "\n Meny till Miniräknare" +
+                   "\n------------------------------------------- +
+                   "\n Vilken beräkning skulle du vilja göra? +
+                   "\n1. Additon?" +
+                   "\n2. Substration" +
+                   "\n3. Multiplikation" +
+                   "\n4. Division " +
+                   "\n5. Eller skulle du vilja avsluta programmet?" +
+                   "\n------------------------------------------");
+                    Console.WriteLine();
+                    Console.Write("Välj ett alternativ");
+                    
+                }
+
+
+
             while (true)
             {
                 // Användarens input
