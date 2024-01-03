@@ -114,13 +114,10 @@ namespace Project
                 Console.WriteLine($"Resultatet av {num1} {operation} {num2}: {result}");
 
                 // Fråga om användaren vill fortsätta
-                Console.Write("Vill du göra en ny beräkning? (ja/nej): ");
-                string continueInput = Console.ReadLine().ToLower();
+                Console.WriteLine("Vill du göra en ny beräkning? (ja eller nej): ");
+                while (Console.ReadLine().ToLower() == "ja");
 
-                if (continueInput != "ja")
-                {
-                    break;
-                }
+               Console.WriteLine("Okej då stänger vi ner");
             }
         }
     }
