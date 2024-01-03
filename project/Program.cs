@@ -22,9 +22,37 @@
                    "\n------------------------------------------");
                     Console.WriteLine();
                     Console.Write("Välj ett alternativ");
-                    
                 }
+                int menuSelector = int.Parse(Console.ReadLine());
+                
+                switch (menuSelector)
+                {
+                    case 1:
+                     Console.WriteLine("dcdcdcc");
+                     break;
 
+                    case 2:
+                     Console.WriteLine("dcdddc");
+                     break;
+
+                    case 3:
+                     Console.WriteLine("ededede");
+                     break;
+
+                    case 4:
+                     Console.WriteLine("ededede");
+                     break;
+
+                    case 5:
+                     Console.WriteLine("");
+                     Console.WriteLine("Avslutas...");
+                     Console.WriteLine("");
+                     break;
+
+                    default:
+                     Console.WriteLine("Oops.. Det var fel menyval. Välj istället en siffra mellan 1-5\n");
+                     break;
+        }
 
 
             while (true)
