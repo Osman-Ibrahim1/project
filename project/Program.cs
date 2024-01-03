@@ -1,75 +1,88 @@
-﻿namespace project
+﻿using System;
+
+namespace Project
 {
     internal class Program
     {
         static void Main(string[] args)
         {
+            bool exitBool = false;
 
-
-                exitBool = false;
-
-                while (exitBool == false)
-                {
-                    Console.WriteLine(
+            while (!exitBool)
+            {
+                Console.WriteLine(
                    "\n Meny till Miniräknare" +
-                   "\n------------------------------------------- +
-                   "\n Vilken beräkning skulle du vilja göra? +
-                   "\n1. Additon?" +
-                   "\n2. Substration" +
+                   "\n-------------------------------------------" +
+                   "\n Vilken beräkning skulle du vilja göra? Välj Metod 1-4." +
+                   "\n1. Addition" +
+                   "\n2. Subtraktion" +
                    "\n3. Multiplikation" +
                    "\n4. Division " +
-                   "\n5. Eller skulle du vilja avsluta programmet?" +
+                   "\n5. Avsluta programmet" +
                    "\n------------------------------------------");
-                    Console.WriteLine();
-                    Console.Write("Välj ett alternativ");
+                Console.WriteLine();
+                Console.Write("Välj ett alternativ: ");
+
+                int menuSelector;
+                if (!int.TryParse(Console.ReadLine(), out menuSelector) || menuSelector < 1 || menuSelector > 5)
+                {
+                    Console.WriteLine("Oops.. Det var fel menyval. Välj istället en siffra mellan 1-5 för att välja metod :) \n");
+                    continue;
                 }
-                int menuSelector = int.Parse(Console.ReadLine());
-                
+
                 switch (menuSelector)
                 {
                     case 1:
-                     Console.WriteLine("dcdcdcc");
-                     break;
+                        PerformCalculation("+");
+                        break;
 
                     case 2:
-                     Console.WriteLine("dcdddc");
-                     break;
+                        PerformCalculation("-");
+                        break;
 
                     case 3:
-                     Console.WriteLine("ededede");
-                     break;
+                        PerformCalculation("*");
+                        break;
 
                     case 4:
-                     Console.WriteLine("ededede");
-                     break;
+                        PerformCalculation("/");
+                        break;
 
                     case 5:
-                     Console.WriteLine("");
-                     Console.WriteLine("Avslutas...");
-                     Console.WriteLine("");
-                     break;
+                        Console.WriteLine("Avslutas...");
+                        exitBool = true;
+                        break;
 
                     default:
-                     Console.WriteLine("Oops.. Det var fel menyval. Välj istället en siffra mellan 1-5\n");
-                     break;
+                        Console.WriteLine("Oops.. Det var fel menyval. Välj istället en siffra mellan 1-5 för att välja metod :) \n");
+                        break;
+                }
+            }
         }
 
-
+        static void PerformCalculation(string operation)
+        {
             while (true)
             {
-                // Användarens input
                 Console.Write("Ange det första talet: ");
-                double num1 = Convert.ToDouble(Console.ReadLine());
-
-                Console.Write("Ange operatören (+, -, *, /): ");
-                string op = Console.ReadLine();
+                double num1;
+                if (!double.TryParse(Console.ReadLine(), out num1))
+                {
+                    Console.WriteLine("Felaktig inmatning. Försök igen.");
+                    continue;
+                }
 
                 Console.Write("Ange det andra talet: ");
-                double num2 = Convert.ToDouble(Console.ReadLine());
+                double num2;
+                if (!double.TryParse(Console.ReadLine(), out num2))
+                {
+                    Console.WriteLine("Felaktig inmatning. Försök igen.");
+                    continue;
+                }
 
                 // Utför beräkningen beroende på operatören
                 double result = 0;
-                switch (op)
+                switch (operation)
                 {
                     case "+":
                         result = num1 + num2;
@@ -98,8 +111,7 @@
                 }
 
                 // Visa resultatet
-                Console.WriteLine("Resultatet: " + result);
-                Console.WriteLine("Resultatet: " + result);
+                Console.WriteLine($"Resultatet av {num1} {operation} {num2}: {result}");
 
                 // Fråga om användaren vill fortsätta
                 Console.Write("Vill du göra en ny beräkning? (ja/nej): ");
@@ -110,7 +122,8 @@
                     break;
                 }
             }
-
         }
     }
 }
+        
+    
