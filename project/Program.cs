@@ -118,6 +118,7 @@ namespace Project
                 while (Console.ReadLine().ToLower() == "ja");
 
                Console.WriteLine("Okej då stänger vi ner");
+               Console.ReadKey();
             }
         }
     }
