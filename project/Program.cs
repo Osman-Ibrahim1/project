@@ -114,6 +114,7 @@ namespace Project
 
                 // Visa resultatet
                 Console.WriteLine($"Resultatet av {num1} {operation} {num2}: {result}");
+                Console.WriteLine($"Resultat: {result}");
 
                 // Fråga om användaren vill fortsätta
                 Console.WriteLine("Vill du göra en ny beräkning? (ja eller nej): ");
