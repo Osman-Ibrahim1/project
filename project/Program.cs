@@ -13,7 +13,7 @@ namespace Project
                 Console.WriteLine(
                    "\n Meny till Miniräknare" +
                    "\n-------------------------------------------" +
-                   "\n Vilken beräkning skulle du vilja göra? Välj Metod 1-4." +
+                   "\n Vilken beräkning skulle du vilja göra? Välj Metod/Operatör 1-4." +
                    "\n1. Addition" +
                    "\n2. Subtraktion" +
                    "\n3. Multiplikation" +
@@ -24,9 +24,10 @@ namespace Project
                 Console.Write("Välj ett alternativ: ");
 
                 int menuSelector;
+
                 if (!int.TryParse(Console.ReadLine(), out menuSelector) || menuSelector < 1 || menuSelector > 5)
                 {
-                    Console.WriteLine("Oops.. Det var fel menyval. Välj istället en siffra mellan 1-5 för att välja metod :) \n");
+                    Console.WriteLine("Oops.. Det var fel menyval. Välj istället en siffra mellan 1-5 :) \n");
                     continue;
                 }
 
@@ -82,6 +83,7 @@ namespace Project
 
                 // Utför beräkningen beroende på operatören
                 double result = 0;
+
                 switch (operation)
                 {
                     case "+":
@@ -101,7 +103,7 @@ namespace Project
                         }
                         else
                         {
-                            Console.WriteLine("Fel: Kan inte dividera med noll.");
+                            Console.WriteLine("Tyvärr man kan inte dividera med noll.");
                             continue;
                         }
                         break;
@@ -116,6 +118,7 @@ namespace Project
                 // Fråga om användaren vill fortsätta
                 Console.WriteLine("Vill du göra en ny beräkning? (ja eller nej): ");
                 while (Console.ReadLine().ToLower() == "ja");
+                
 
                Console.WriteLine("Okej då stänger vi ner");
                Console.ReadKey();
