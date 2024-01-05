@@ -2,6 +2,44 @@
 
 namespace Project
 {
+    class Adder
+    {
+        public double Add(double num1, double num2)
+        {
+            return num1 + num2;
+        }
+    }
+
+    class Subtractor
+    {
+        public double Subtract(double num1, double num2)
+        {
+            return num1 - num2;
+        }
+    }
+
+    class Multiplier
+    {
+        public double Multiply(double num1, double num2)
+        {
+            return num1 * num2;
+        }
+    }
+
+    class Divider
+    {
+        public double Divide(double num1, double num2)
+        {
+            if (num2 != 0)
+                return num1 / num2;
+            else
+            {
+                Console.WriteLine("Kan inte dela med noll!");
+                return double.NaN; // Not a Number
+            }
+        }
+    }
+
     internal class Program
     {
         static void Main(string[] args)
@@ -34,19 +72,19 @@ namespace Project
                 switch (menuSelector)
                 {
                     case 1:
-                        PerformCalculation("+");
+                        PerformCalculation(new Adder(), "+");
                         break;
 
                     case 2:
-                        PerformCalculation("-");
+                        PerformCalculation(new Subtractor(), "-");
                         break;
 
                     case 3:
-                        PerformCalculation("*");
+                        PerformCalculation(new Multiplier(), "*");
                         break;
 
                     case 4:
-                        PerformCalculation("/");
+                        PerformCalculation(new Divider(), "/");
                         break;
 
                     case 5:
@@ -61,7 +99,7 @@ namespace Project
             }
         }
 
-        static void PerformCalculation(string operation)
+        static void PerformCalculation(object calculator, string operation)
         {
             while (true)
             {
@@ -87,25 +125,16 @@ namespace Project
                 switch (operation)
                 {
                     case "+":
-                        result = num1 + num2;
+                        result = ((Adder)calculator).Add(num1, num2);
                         break;
                     case "-":
-                        result = num1 - num2;
+                        result = ((Subtractor)calculator).Subtract(num1, num2);
                         break;
                     case "*":
-                        result = num1 * num2;
+                        result = ((Multiplier)calculator).Multiply(num1, num2);
                         break;
                     case "/":
-                        // Kontrollera så att man inte dividerar med noll
-                        if (num2 != 0)
-                        {
-                            result = num1 / num2;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Tyvärr man kan inte dividera med noll.");
-                            continue;
-                        }
+                        result = ((Divider)calculator).Divide(num1, num2);
                         break;
                     default:
                         Console.WriteLine("Felaktig operatör.");
@@ -118,14 +147,13 @@ namespace Project
 
                 // Fråga om användaren vill fortsätta
                 Console.WriteLine("Vill du göra en ny beräkning? (ja eller nej): ");
-                while (Console.ReadLine().ToLower() == "ja");
-                
-
-               Console.WriteLine("Okej då stänger vi ner");
-               Console.ReadKey();
+                if (Console.ReadLine().ToLower() != "ja")
+                {
+                    Console.WriteLine("Okej då stänger vi ner");
+                    Console.ReadKey();
+                    break;
+                }
             }
         }
     }
 }
-        
-    
