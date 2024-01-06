@@ -2,6 +2,44 @@
 
 namespace Project
 {
+    class Adder
+    {
+        public double Add(double num1, double num2)
+        {
+            return num1 + num2;
+        }
+    }
+
+    class Subtractor
+    {
+        public double Subtract(double num1, double num2)
+        {
+            return num1 - num2;
+        }
+    }
+
+    class Multiplier
+    {
+        public double Multiply(double num1, double num2)
+        {
+            return num1 * num2;
+        }
+    }
+
+    class Divider
+    {
+        public double Divide(double num1, double num2)
+        {
+            if (num2 != 0)
+                return num1 / num2;
+            else
+            {
+                Console.WriteLine("Kan inte dela med noll!");
+                return double.NaN; // Not a Number
+            }
+        }
+    }
+
     internal class Program
     {
         static void Main(string[] args)
@@ -54,6 +92,7 @@ namespace Project
                     case 4:
                         calculatorOperation = new Calculator.Divider();
                         operation = "/";
+
                         break;
 
                     case 5:
@@ -74,14 +113,17 @@ namespace Project
         }
 
         static void PerformCalculation(Calculator.IOperation calculator, string operation)
+
         {
-            while (true)
+            bool continueCalculation = true;
+
+            while (continueCalculation)
             {
                 Console.Write("Ange det första talet: ");
                 double num1;
                 if (!double.TryParse(Console.ReadLine(), out num1))
                 {
-                    Console.WriteLine("Felaktig inmatning. Försök igen.");
+                    Console.WriteLine("Tyvärr skrivfel. Testa igen.");
                     continue;
                 }
 
@@ -89,11 +131,12 @@ namespace Project
                 double num2;
                 if (!double.TryParse(Console.ReadLine(), out num2))
                 {
-                    Console.WriteLine("Felaktig inmatning. Försök igen.");
+                    Console.WriteLine("Tyvärr skrivfel. Testa igen.");
                     continue;
                 }
 
                 double result = calculator.Operate(num1, num2);
+
 
                 Console.WriteLine($"Resultatet av {num1} {operation} {num2}: {result}");
 
