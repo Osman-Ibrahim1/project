@@ -14,10 +14,10 @@ namespace Project
                    "\n Meny till Miniräknare" +
                    "\n-------------------------------------------" +
                    "\n Vilken beräkning skulle du vilja göra? Välj Metod/Operatör 1-4." +
-                   "\n1. Addition" +
-                   "\n2. Subtraktion" +
-                   "\n3. Multiplikation" +
-                   "\n4. Division " +
+                   "\n1. Addition + " +
+                   "\n2. Subtraktion -" +
+                   "\n3. Multiplikation *" +
+                   "\n4. Division /" +
                    "\n5. Avsluta programmet" +
                    "\n------------------------------------------");
                 Console.WriteLine();
