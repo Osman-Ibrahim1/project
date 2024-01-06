@@ -46,7 +46,7 @@ namespace Project
                     return num1 / num2;
                 else
                 {
-                    Console.WriteLine("Kan inte dela med noll!");
+                    Console.WriteLine("Kan inte delas med noll!");
                     return double.NaN; // Not a Number
                 }
             }
