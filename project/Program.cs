@@ -6,64 +6,102 @@ namespace Project
     {
         static void Main(string[] args)
         {
-            Calculator calculator = new Calculator();
+            bool exitBool = false;
 
+            while (!exitBool)
+            {
+                Console.WriteLine(
+                   "\n Meny till Miniräknare" +
+                   "\n-------------------------------------------" +
+                   "\n Vilken beräkning skulle du vilja göra? Välj Metod/Operatör 1-4." +
+                   "\n1. Addition" +
+                   "\n2. Subtraktion" +
+                   "\n3. Multiplikation" +
+                   "\n4. Division " +
+                   "\n5. Avsluta programmet" +
+                   "\n------------------------------------------");
+                Console.WriteLine();
+                Console.Write("Välj ett alternativ: ");
+
+                int menuSelector;
+
+                if (!int.TryParse(Console.ReadLine(), out menuSelector) || menuSelector < 1 || menuSelector > 5)
+                {
+                    Console.WriteLine("Oops.. Det var fel menyval. Välj istället en siffra mellan 1-5 :) \n");
+                    continue;
+                }
+
+                Calculator.IOperation calculatorOperation = null;
+                var operation = "";
+
+                switch (menuSelector)
+                {
+                    case 1:
+                        calculatorOperation = new Calculator.Adder();
+                        operation = "+";
+                        break;
+
+                    case 2:
+                        calculatorOperation = new Calculator.Subtractor();
+                        operation = "-";
+                        break;
+
+                    case 3:
+                        calculatorOperation = new Calculator.Multiplier();
+                        operation = "*";
+                        break;
+
+                    case 4:
+                        calculatorOperation = new Calculator.Divider();
+                        operation = "/";
+                        break;
+
+                    case 5:
+                        Console.WriteLine("Avslutas...");
+                        exitBool = true;
+                        break;
+
+                    default:
+                        Console.WriteLine("Oops.. Det var fel menyval. Välj istället en siffra mellan 1-5 för att välja metod :) \n");
+                        break;
+                }
+
+                if (operation != "" && calculatorOperation != null)
+                {
+                    PerformCalculation(calculatorOperation, operation);
+                }
+            }
+        }
+
+        static void PerformCalculation(Calculator.IOperation calculator, string operation)
+        {
             while (true)
             {
-                Console.WriteLine("Välkommen till miniräknaren!");
-                Console.WriteLine("Ange ett tal:");
+                Console.Write("Ange det första talet: ");
                 double num1;
                 if (!double.TryParse(Console.ReadLine(), out num1))
                 {
-                    Console.WriteLine("Felaktigt tal. Försök igen.");
+                    Console.WriteLine("Felaktig inmatning. Försök igen.");
                     continue;
                 }
 
-                Console.WriteLine("Ange en operation (+, -, *, /):");
-                char operation = Console.ReadKey().KeyChar;
-                Console.WriteLine(); // För att lägga till radbrytning efter operationen.
-
-                Console.WriteLine("Ange det andra talet:");
+                Console.Write("Ange det andra talet: ");
                 double num2;
                 if (!double.TryParse(Console.ReadLine(), out num2))
                 {
-                    Console.WriteLine("Felaktigt tal. Försök igen.");
+                    Console.WriteLine("Felaktig inmatning. Försök igen.");
                     continue;
                 }
 
-                double result = 0;
-                try
-                {
-                    switch (operation)
-                    {
-                        case '+':
-                            result = calculator.Add(num1, num2);
-                            break;
-                        case '-':
-                            result = calculator.Subtract(num1, num2);
-                            break;
-                        case '*':
-                            result = calculator.Multiply(num1, num2);
-                            break;
-                        case '/':
-                            result = calculator.Divide(num1, num2);
-                            break;
-                        default:
-                            Console.WriteLine("Ogiltig operation.");
-                            continue;
-                    }
+                double result = calculator.Operate(num1, num2);
 
-                    Console.WriteLine("Resultatet är: " + result);
-                }
-                catch (ArgumentException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+                Console.WriteLine($"Resultatet av {num1} {operation} {num2}: {result}");
 
-                Console.WriteLine("Vill du fortsätta? (ja/nej)");
-                string continueInput = Console.ReadLine().ToLower();
-                if (continueInput != "ja")
+                Console.WriteLine("Vill du göra en ny beräkning? (ja eller nej): ");
+                if (Console.ReadLine().ToLower() != "ja")
                 {
+                    Console.WriteLine("Okej då stänger vi ner");
+                    Console.ReadKey();
                     break;
                 }
             }
