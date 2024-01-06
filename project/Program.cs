@@ -11,6 +11,7 @@ namespace Project
             while (!exitBool)
             {
                 Console.WriteLine(
+                   "\n-------------------------------------------" +
                    "\n Meny till Miniräknare" +
                    "\n-------------------------------------------" +
                    "\n Vilken beräkning skulle du vilja göra? Välj Metod/Operatör 1-4." +
