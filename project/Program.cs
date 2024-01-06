@@ -52,10 +52,10 @@ namespace Project
                    "\n Meny till Miniräknare" +
                    "\n-------------------------------------------" +
                    "\n Vilken beräkning skulle du vilja göra? Välj Metod/Operatör 1-4." +
-                   "\n1. Addition" +
-                   "\n2. Subtraktion" +
-                   "\n3. Multiplikation" +
-                   "\n4. Division " +
+                   "\n1. Addition + " +
+                   "\n2. Subtraktion -" +
+                   "\n3. Multiplikation *" +
+                   "\n4. Division /" +
                    "\n5. Avsluta programmet" +
                    "\n------------------------------------------");
                 Console.WriteLine();
@@ -69,22 +69,30 @@ namespace Project
                     continue;
                 }
 
+                Calculator.IOperation calculatorOperation = null;
+                var operation = "";
+
                 switch (menuSelector)
                 {
                     case 1:
-                        PerformCalculation(new Adder(), "+");
+                        calculatorOperation = new Calculator.Adder();
+                        operation = "+";
                         break;
 
                     case 2:
-                        PerformCalculation(new Subtractor(), "-");
+                        calculatorOperation = new Calculator.Subtractor();
+                        operation = "-";
                         break;
 
                     case 3:
-                        PerformCalculation(new Multiplier(), "*");
+                        calculatorOperation = new Calculator.Multiplier();
+                        operation = "*";
                         break;
 
                     case 4:
-                        PerformCalculation(new Divider(), "/");
+                        calculatorOperation = new Calculator.Divider();
+                        operation = "/";
+
                         break;
 
                     case 5:
@@ -96,10 +104,16 @@ namespace Project
                         Console.WriteLine("Oops.. Det var fel menyval. Välj istället en siffra mellan 1-5 för att välja metod :) \n");
                         break;
                 }
+
+                if (operation != "" && calculatorOperation != null)
+                {
+                    PerformCalculation(calculatorOperation, operation);
+                }
             }
         }
 
-        static void PerformCalculation(object calculator, string operation)
+        static void PerformCalculation(Calculator.IOperation calculator, string operation)
+
         {
             bool continueCalculation = true;
 
@@ -121,33 +135,11 @@ namespace Project
                     continue;
                 }
 
-                // Utför beräkningen beroende på operatören
-                double result = 0;
+                double result = calculator.Operate(num1, num2);
 
-                switch (operation)
-                {
-                    case "+":
-                        result = ((Adder)calculator).Add(num1, num2);
-                        break;
-                    case "-":
-                        result = ((Subtractor)calculator).Subtract(num1, num2);
-                        break;
-                    case "*":
-                        result = ((Multiplier)calculator).Multiply(num1, num2);
-                        break;
-                    case "/":
-                        result = ((Divider)calculator).Divide(num1, num2);
-                        break;
-                    default:
-                        Console.WriteLine("Felaktig operatör.");
-                        continue;
-                }
 
-                // Visa resultatet
                 Console.WriteLine($"Resultatet av {num1} {operation} {num2}: {result}");
-                Console.WriteLine($"Resultat: {result}");
 
-                // Fråga om användaren vill fortsätta
                 Console.WriteLine("Vill du göra en ny beräkning? (ja eller nej): ");
                 if (Console.ReadLine().ToLower() != "ja")
                 {
