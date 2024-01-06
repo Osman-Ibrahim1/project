@@ -101,13 +101,15 @@ namespace Project
 
         static void PerformCalculation(object calculator, string operation)
         {
-            while (true)
+            bool continueCalculation = true;
+
+            while (continueCalculation)
             {
                 Console.Write("Ange det första talet: ");
                 double num1;
                 if (!double.TryParse(Console.ReadLine(), out num1))
                 {
-                    Console.WriteLine("Felaktig inmatning. Försök igen.");
+                    Console.WriteLine("Tyvärr skrivfel. Testa igen.");
                     continue;
                 }
 
@@ -115,7 +117,7 @@ namespace Project
                 double num2;
                 if (!double.TryParse(Console.ReadLine(), out num2))
                 {
-                    Console.WriteLine("Felaktig inmatning. Försök igen.");
+                    Console.WriteLine("Tyvärr skrivfel. Testa igen.");
                     continue;
                 }
 
